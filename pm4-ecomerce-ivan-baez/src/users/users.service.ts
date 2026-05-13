@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UsersRepository } from './users.repository';
 import { Users } from 'src/users/entities/users.entity';
+import { UpdateUserDto } from './dto/users.dto';
 
 
 
@@ -18,15 +19,16 @@ async getUserById(id:string): Promise<Omit<Users, 'password'|'isAdmin'>> {
  return this.usersRepository.getUserById(id)
 }
 
-//addUser(userNewData:CreateUserDto){
-//  return this.usersRepository.addUser(userNewData)
-//}
-
-updateUser(id:string,userNewData:any){
-  return this.usersRepository.updateUser(id,userNewData);
+updateUser(id:string, userNewData: UpdateUserDto){
+  return this.usersRepository.updateUser(id, userNewData);
 }
 
 deleteUser(id:string){
   return this.usersRepository.deleteUser(id)
 }
+
+
+
+
+
 }

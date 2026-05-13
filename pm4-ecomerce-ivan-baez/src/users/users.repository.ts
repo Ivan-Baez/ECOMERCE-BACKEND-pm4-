@@ -4,6 +4,7 @@ import { Users } from 'src/users/entities/users.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/users.dto';
 
+
 @Injectable()
 export class UsersRepository {
   constructor(
@@ -63,7 +64,7 @@ export class UsersRepository {
 
   async updateUser(
     id: string,
-    newUserData: Users,
+    newUserData: Partial<Users>,
   ): Promise<Omit<Users, 'password'> | string> {
     const user = await this.ormUsersRepository.findOneBy({ id });
     if (!user) throw new NotFoundException(`No existe usuario con id ${id}`);
@@ -74,7 +75,7 @@ const mergedUser = this.ormUsersRepository.merge(user, newUserData);
 // Guarda el usuario fusionado en la base de datos
 const savedUser = await this.ormUsersRepository.save(mergedUser);
 
-// Excluye la contraseña del objeto antes de devolverlo o usarlo
+
 const { password, ...userNoPassword } = savedUser;
     return userNoPassword;
   }
@@ -86,4 +87,7 @@ const { password, ...userNoPassword } = savedUser;
     await this.ormUsersRepository.remove(foundUser);
     return foundUser.id;
   }
+
+
 }
+

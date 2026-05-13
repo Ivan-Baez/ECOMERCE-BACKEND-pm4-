@@ -22,6 +22,13 @@ export class Products {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column({
+    type: 'boolean',
+    default: false,
+    nullable: true,
+  })
+  isOffer: boolean;
+
   @ApiProperty({
     description: 'Nombre del producto',
     example: 'Auriculares Bluetooth',
