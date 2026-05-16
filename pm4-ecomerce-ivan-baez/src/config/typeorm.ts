@@ -7,6 +7,7 @@ dotenvConfig({ path: '.development.env' });
 
 const config = {
   type: 'postgres',
+  url: process.env.DATABASE_URL,
   database: environment.DB_NAME,
   host: environment.DB_HOST,
   port: environment.DB_PORT as unknown as number,
